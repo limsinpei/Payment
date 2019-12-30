@@ -1,0 +1,351 @@
+package com.example.paymentmethod
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import java.util.regex.Pattern
+import android.view.KeyEvent
+import android.view.View
+import android.widget.*
+
+
+
+
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+
+        val emailcheck = findViewById<EditText>(R.id.email)
+        emailcheck.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            // If the event is a key-down event on the "enter" button
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Perform action on key press
+                //Toast.makeText(applicationContext, "The email address format are wrong!!", Toast.LENGTH_LONG)
+                checkemail()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        val namecheck = findViewById<EditText>(R.id.name)
+        namecheck.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            // If the event is a key-down event on the "enter" button
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Perform action on key press
+                //Toast.makeText(applicationContext, "The email address format are wrong!!", Toast.LENGTH_LONG)
+                checkname()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        val cardcheck = findViewById<EditText>(R.id.cardnum)
+        cardcheck.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            // If the event is a key-down event on the "enter" button
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Perform action on key press
+                //Toast.makeText(applicationContext, "The email address format are wrong!!", Toast.LENGTH_LONG)
+                checkcardnum()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        val month = resources.getStringArray(R.array.month)
+        val spinner = findViewById<Spinner>(R.id.month)
+        if (spinner != null) {
+            val adapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item, month
+            )
+            spinner.adapter = adapter
+        }
+        spinner.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            // If the event is a key-down event on the "enter" button
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Perform action on key press
+                //Toast.makeText(applicationContext, "The email address format are wrong!!", Toast.LENGTH_LONG)
+                checkmonth()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        val year = resources.getStringArray(R.array.year)
+        val yearspinner = findViewById<Spinner>(R.id.year)
+        if (yearspinner != null) {
+            val adapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item, year
+            )
+            yearspinner.adapter = adapter
+        }
+        yearspinner.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            // If the event is a key-down event on the "enter" button
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Perform action on key press
+                //Toast.makeText(applicationContext, "The email address format are wrong!!", Toast.LENGTH_LONG)
+                checkyear()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        val cvvcheck = findViewById<EditText>(R.id.cardCVCEditText)
+        cvvcheck.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            // If the event is a key-down event on the "enter" button
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                // Perform action on key press
+                //Toast.makeText(applicationContext, "The email address format are wrong!!", Toast.LENGTH_LONG)
+                checkcvv()
+                return@OnKeyListener true
+            }
+            false
+        })
+
+        submitcheck()
+    }
+
+    fun checkemail()
+    {
+        val emailcheck = findViewById<EditText>(R.id.email)
+        val textemail = emailcheck.text.toString()
+        val emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$"
+
+        val pat = Pattern.compile(emailRegex)
+        //val nullerror = Toast.makeText(applicationContext, "The email address cannot be null!!", Toast.LENGTH_LONG)
+        //nullerror.show()
+        //val error = Toast.makeText(applicationContext, "The email address format are wrong!!", Toast.LENGTH_LONG)
+
+        if (textemail == null || textemail == "")
+        {
+            //nullerror.show()
+            emailcheck.setText("")
+            emailcheck.setError(getString(R.string.nullemail))
+
+        }
+        else if(pat.matcher(textemail).matches())
+        {
+
+        }
+        else
+        {
+            //error.show()
+            emailcheck.setText("")
+            emailcheck.setError(getString(R.string.erroremail))
+
+        }
+    }
+
+    fun checkname()
+    {
+        val name = findViewById<EditText>(R.id.name)
+        val textname = name.text.toString()
+        val letter = Pattern.compile("[a-zA-z]")
+        val digit = Pattern.compile("[0-9]")
+        val special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]")
+        //Pattern eight = Pattern.compile (".{8}");
+
+
+        //val hasLetter = letter.matcher(textname)
+        val hasDigit = digit.matcher(textname)
+        val hasSpecial = special.matcher(textname)
+
+        if(textname == null || textname == "")
+        {
+            name.setText("")
+            name.setError(getString(R.string.nullname))
+
+        }
+        else if(hasDigit.find() || hasSpecial.find())
+        {
+            name.setText("")
+            name.setError(getString(R.string.numname))
+
+        }
+        else
+        {
+
+        }
+
+    }
+
+
+    fun checkcardnum()
+    {
+        val cardnum = findViewById<EditText>(R.id.cardnum)
+        val card = cardnum.text.toString()
+        val regex = "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
+                "(?<mastercard>5[1-5][0-9]{14})|" +
+                "(?<discover>6(?:011|5[0-9]{2})[0-9]{12})|" +
+                "(?<amex>3[47][0-9]{13})|" +
+                "(?<diners>3(?:0[0-5]|[68][0-9])?[0-9]{11})|" +
+                "(?<jcb>(?:2131|1800|35[0-9]{3})[0-9]{11}))$"
+
+        val letter = Pattern.compile("[a-zA-z]")
+        val digit = Pattern.compile("[0-9]")
+        val special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]")
+        val hasLetter = letter.matcher(card)
+        val hasDigit = digit.matcher(card)
+        val hasSpecial = special.matcher(card)
+
+        val pattern = Pattern.compile(regex)
+
+        val matcher = pattern.matcher(card)
+
+        if(card == null || card.toString() == "")
+        {
+            cardnum.setText("")
+            cardnum.setError(getString(R.string.nullname))
+
+        }
+        else if(hasLetter.find() || hasSpecial.find())
+        {
+            cardnum.setText("")
+            cardnum.setError(getString(R.string.erroremail))
+        }
+        else if (matcher.matches())
+        {
+
+        }
+        else
+        {
+            cardnum.setText("")
+            cardnum.setError(getString(R.string.erroremail))
+        }
+
+    }
+
+    fun sumOfEvenPlaces(num:Int):Int
+    {
+        var sum = 0
+        var remainder:Int
+
+        while (num % 10 != 0 || num / 10 != 0) {
+            remainder = num % 10
+
+            sum = sum+getDigit((remainder * 2))
+            var num = num /100
+        }
+        return sum
+    }
+
+    fun sumOfOddPlaces(card:Int):Int
+    {
+        var sum = 0
+        var remainder:Int
+        var card = card / 10
+        while (card % 10 != 0 || card / 10 != 0) {
+            remainder = (card % 10)
+            sum = sum + getDigit(remainder * 2)
+            card /= 100
+        }
+        return sum
+    }
+
+    fun getDigit(number:Int):Int
+    {
+        if (number > 9) {
+            return (number % 10 + number / 10);
+        }
+        return number
+    }
+
+    fun checkcvv()
+    {
+        val cvv = findViewById<EditText>(R.id.cardCVCEditText)
+        val textcvv = cvv.text.toString()
+
+        val letter = Pattern.compile("[a-zA-z]")
+        val digit = Pattern.compile("[0-9]")
+        val special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]")
+        val hasLetter = letter.matcher(textcvv)
+        val hasDigit = digit.matcher(textcvv)
+        val hasSpecial = special.matcher(textcvv)
+
+        if(textcvv == null || textcvv == "")
+        {
+            cvv.setText("")
+            cvv.setError(getString(R.string.nullname))
+
+        }
+        else if(hasLetter.find() || hasSpecial.find())
+        {
+            cvv.setText("")
+            cvv.setError(getString(R.string.numname))
+
+        }
+        else if(hasDigit.find())
+        {
+            if(cvv.length() == 3 )
+            {
+
+            }
+        }
+
+
+    }
+
+    fun checkmonth()
+    {
+        val spinner = findViewById<Spinner>(R.id.month)
+        if (spinner.selectedItem.toString().equals("month")){
+
+            Toast.makeText(getApplicationContext(),"month hasn't values",
+                Toast.LENGTH_LONG).show();
+        }
+    }
+
+    fun checkyear()
+    {
+        val yearspinner = findViewById<Spinner>(R.id.year)
+        if (yearspinner.selectedItem.toString().equals("year")){
+
+            Toast.makeText(getApplicationContext(),"year hasn't values",
+                Toast.LENGTH_LONG).show();
+        }
+    }
+
+    fun submitcheck()
+    {
+        val button = findViewById<Button>(R.id.submit)
+        val cvv = findViewById<EditText>(R.id.cardCVCEditText)
+        val address = findViewById<EditText>(R.id.billingAddress)
+        val cardnum =findViewById<EditText>(R.id.cardnum)
+        val email = findViewById<EditText>(R.id.email)
+        val name = findViewById<EditText>(R.id.name)
+        val yearspinner = findViewById<Spinner>(R.id.year)
+        val spinner = findViewById<Spinner>(R.id.month)
+
+
+            if(cvv.text.toString() != null)
+        {
+            if(address.text.toString() != null)
+            {
+                if(cardnum.text.toString() != null)
+                {
+                    if(email.text.toString() != null)
+                    {
+                        if(name.text.toString() != null)
+                        {
+                            if (yearspinner.selectedItem.toString()!="year")
+                            {
+                                if (spinner.selectedItem.toString()!="month")
+                                {
+                                    button.isEnabled = true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="30dp"
+        android:inputType="textPersonName"
+        android:text="Payment Method"
+        android:textAlignment="center"
+        android:clickable="false"
+        android:textColor="@color/colorPrimary"
+        android:background="@null"/>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Email Address"
+        android:textAlignment="center"/>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"/>
+
+    <EditText
+        android:id="@+id/billingAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Billing Address"
+        android:textAlignment="center"/>
+
+
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="30dp"/>
+
+        <ImageView
+            android:id="@+id/card"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/creditcard"/>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"/>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name On Card"
+        android:textAlignment="center"/>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"/>
+
+    <EditText
+        android:id="@+id/cardnum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Card Number(without '-')"
+        android:textAlignment="center"/>
+
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-0.25dp"
+        android:orientation="horizontal"
+        tools:ignore="NegativeMargin">
+
+        <TextView
+            android:id="@+id/txtView"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Select month:"
+            android:textSize = "14dp" />
+        <Spinner
+            android:id="@+id/month"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/textyear"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Select Year:"
+            android:textSize = "14dp" />
+        <Spinner
+            android:id="@+id/year"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            />
+        <EditText
+            android:id="@+id/cardCVCEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="-0.25dp"
+            android:layout_weight="1"
+
+            android:hint="CVC"
+            android:inputType="number"
+            android:padding="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:ignore="LabelFor,RtlHardcoded" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom">
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="390dp"
+        android:layout_height="40dp"
+        android:background="@android:color/holo_red_light"
+        android:text="@string/submit"
+        android:textAlignment="center"
+        android:enabled="false"/>
+
+</LinearLayout>
+
+</LinearLayout>

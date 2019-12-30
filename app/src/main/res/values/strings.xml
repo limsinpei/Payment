@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">PaymentMethod</string>
+    <string name="nameoncard">Name On Card</string>
+    <string name="cardnum">Card Number</string>
+    <string name="address">Billing Address</string>
+    <string name="emailAddress">Email Address</string>
+    <string name="cvv">CVV</string>
+    <string name="submit">Submit</string>
+    <string name="erroremail">Wrong format</string>
+    <string name="nullemail">Cannot be null</string>
+    <string name="errorname">Wrong format</string>
+    <string name="numname">Cannot be numberic</string>
+    <string name="nullname">Cannot be null</string>
+
+    <string-array name="month">
+        <item>year</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="year">
+        <item>month</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+
+    </string-array>
+</resources>
