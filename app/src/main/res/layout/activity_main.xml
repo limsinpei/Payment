@@ -40,15 +40,13 @@
         android:layout_height="30dp"/>
 
     <EditText
-        android:id="@+id/billingAddress"
+        android:id="@+id/phonenumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Billing Address"
+        android:hint="Phone Number (XXX-XXXXXXX)"
         android:textAlignment="center"/>
-
-
 
         <Space
             android:layout_width="1dp"
